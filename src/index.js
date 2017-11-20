@@ -1,39 +1,22 @@
-import _ from 'lodash';
+import { cube } from './math.js';
 import printMe from './print.js';
 import './style.css';
 import Icon from './icon.jpg';
 import dataJson from '../data/data.json';
 
 function component() {
-    var element = document.createElement('div');
-    var btn = document.createElement('button');
-    
-    // Add the image to our existing div
-    var myIcon = new Image();
-    myIcon.src = Icon;
 
+  var element = document.createElement('pre');
 
-    // Lodash, now imported by this script
-    
-    element.innerHTML = _.join(['Hello', dataJson.name], ' ');
-    btn.innerHTML = 'Click me and check the console';
-    btn.onclick = printMe;
-    element.appendChild(btn);
-    element.classList.add('hello');
-    element.appendChild(myIcon);
+  element.innerHTML = [
+    'Hello webpack!',
+    '5 cubed is equal to ' + cube(5)
+  ].join('\n\n');
 
+  return element;
 
-    
-
-    return element;
-  }
+}
   
-  document.body.appendChild(component());
+document.body.appendChild(component());
 
-  if(module.hot) {
-    module.hot.accept('./print.js', function() {
-      console.log('Accepting the updated printMe module!');
-      printMe();
-    })
-  }
   
