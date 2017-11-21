@@ -23,12 +23,12 @@ function component() {
   element.classList.add('hello');
   element.appendChild(myIcon);
 
-  // Note that because a network request is involved, some indication
-  // of loading would need to be shown in a production level site/app
-  btn.onclick = e => import(/* webpackChunkName: "print" */ './print').then(module => {
-    var print = module.default;
-    print();
-  });
+  // // Note that because a network request is involved, some indication
+  // // of loading would need to be shown in a production level site/app
+  // btn.onclick = e => import(/* webpackChunkName: "print" */ './print').then(module => {
+  //   var print = module.default;
+  //   print();
+  // });
 
   return element;
 }

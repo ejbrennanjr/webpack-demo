@@ -1,3 +1,10 @@
+# TO READ:
+# https://medium.com/@andyccs/webpack-and-docker-for-development-and-deployment-ae0e73243db4
+
+
+
+
+
 # Build
 # docker build -f node.dockerfile -t base-node .
 
