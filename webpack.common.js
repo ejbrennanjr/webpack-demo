@@ -1,4 +1,3 @@
-const path = require('path');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -6,21 +5,24 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: {
     app: './src/index.js',
-    another: './src/another-module.js'
+    another: './src/another-module.js', 
+    vendor: [
+      'lodash'
+    ]
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      title: 'Code Splitting'
+      title: 'Caching'
+    }),
+    new webpack.HashedModuleIdsPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor' // extract 3rd party code into separate bundle.  works in conjuction with 'vendor' entry above.  Must proceed the runtime commonchunk
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'common' // specify the common bundle's name.
+      name: 'runtime' // extract webpack boilerplate code into separate bundle.  using a non-entry name
     })
   ],
-  output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist')
-  },
   module: {
     rules: [
       {
